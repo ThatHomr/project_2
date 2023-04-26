@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,6 +33,7 @@ ALLOWED_HOSTS = ['127.0.0.1']
 
 INSTALLED_APPS = [
     'mainapp',
+    'sass_processor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -150,4 +152,11 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 로그인 상태에서 브라우저가 닫혔을 때 세션정보 삭제하기
-SESSION_EXPIRE_AT_BROWSER_CLOSE = Trueg
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# scss 사용하기 위한 설정
+SASS_PROCESSOR_ENABLED = True
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static', 'static')
+SASS_OUTPUT_STYLE = 'compact'
+SASS_PRECISION = 8
+SASS_PROCESSOR_AUTO_INCLUDE = False
