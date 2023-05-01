@@ -23,6 +23,8 @@ urlpatterns = [
     path('index/', include('mainapp.urls')),
     # http://127.0.0.1:8000/main/
     path('main/', include('mainapp.urls')),
+    # http://127.0.0.1:8000/reference/
+    path('reference/', include('referenceapp.urls')),
     # http://127.0.0.1:8000/admin/
     path('admin/', admin.site.urls),
 ]

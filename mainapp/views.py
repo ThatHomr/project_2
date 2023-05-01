@@ -9,3 +9,7 @@ def index(request):
 # main 페이지
 def main(request):
     return render(request, 'mainapp\index.html', {})
+
+# reference 페이지
+def reference(request):
+    return render(request, 'mainapp/reference/index.html', {})
