@@ -29,7 +29,11 @@
       rel="stylesheet"
     />
   </head>
-  <body id="page-top">
+  <body
+    id="page-top"
+    onload="init_lpord_selected('{{ year_data }}'),
+            init_pord_selected('{{ month_data }}');"
+  >
     <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
@@ -282,70 +286,53 @@
             <!-- Area Chart -->
             <div class="col-xl-8 col-lg-7">
               <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between btn-group"
-                >
-                  <h6 class="m-0 font-weight-bold text-primary">
-                    전력량 map-view
-                  </h6>
-                  <div class="dropdown">
-                    <div class="dropdown btn-group">
-                      <button
-                        class="btn btn-primary dropdown-toggle"
-                        type="button"
-                        id="dropdownMenuButton"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
+                <form id="fm" name="fm" method="get" action="#">
+                  {% csrf_token %}
+                  <!-- Card Header - Dropdown -->
+                  <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between btn-group"
+                  >
+                    <h6 class="m-0 font-weight-bold text-primary">
+                      전력량 map-view
+                    </h6>
+                    <div class="mb-4">
+                      <select
+                        class="form-select form-select-sm"
+                        aria-label=".form-select-sm example"
+                        name="year_data"
+                        onchange="goYear()"
                       >
-                        년도
-                      </button>
-                      <div
-                        class="dropdown-menu animated--fade-in"
-                        aria-labelledby="dropdownMenuButton"
+                        <option selected value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                      </select>
+                      <select
+                        class="form-select form-select-sm"
+                        aria-label=".form-select-sm example"
+                        name="month_data"
                       >
-                        <a class="dropdown-item" href="#">2017</a>
-                        <a class="dropdown-item" href="#">2018</a>
-                        <a class="dropdown-item" href="#">2019</a>
-                        <a class="dropdown-item" href="#">2020</a>
-                        <a class="dropdown-item" href="#">2021</a>
-                      </div>
-                    </div>
-                    <div class="dropdown btn-group">
-                      <button
-                        class="btn btn-primary dropdown-toggle"
-                        type="button"
-                        id="dropdownMenuButton2"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        해당 월
-                      </button>
-                      <div
-                        class="dropdown-menu animated--fade-in"
-                        aria-labelledby="dropdownMenuButton2"
-                      >
-                        <a class="dropdown-item" href="#">1월</a>
-                        <a class="dropdown-item" href="#">2월</a>
-                        <a class="dropdown-item" href="#">3월</a>
-                        <a class="dropdown-item" href="#">4월</a>
-                        <a class="dropdown-item" href="#">5월</a>
-                        <a class="dropdown-item" href="#">6월</a>
-                        <a class="dropdown-item" href="#">7월</a>
-                        <a class="dropdown-item" href="#">8월</a>
-                        <a class="dropdown-item" href="#">9월</a>
-                        <a class="dropdown-item" href="#">10월</a>
-                        <a class="dropdown-item" href="#">11월</a>
-                        <a class="dropdown-item" href="#">12월</a>
-                      </div>
+                        <option selected value="1">1월</option>
+                        <option value="2">2월</option>
+                        <option value="3">3월</option>
+                        <option value="4">4월</option>
+                        <option value="5">5월</option>
+                        <option value="6">6월</option>
+                        <option value="7">7월</option>
+                        <option value="8">8월</option>
+                        <option value="9">9월</option>
+                        <option value="10">10월</option>
+                        <option value="11">11월</option>
+                        <option value="12">12월</option>
+                      </select>
                     </div>
                   </div>
-                </div>
+                </form>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-area"></div>
+                  <div class="row-cols-1">{{ map_html | safe }}</div>
                 </div>
               </div>
             </div>
@@ -440,5 +427,6 @@
     <!-- Page level custom scripts -->
     <script src="../../static/referenceapp/js/demo/chart-area-demo.js"></script>
     <script src="../../static/referenceapp/js/demo/chart-pie-demo.js"></script>
+    <script src="\static\referenceapp\js\reference.js"></script>
   </body>
 </html>
