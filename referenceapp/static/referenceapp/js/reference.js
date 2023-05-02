@@ -6,9 +6,6 @@ const goYear = () => {
   const area = fm.area_data.value;
   let url =
     "/reference/map_view/?year=" + year + "&month=" + month + "&area=" + area;
-  alert(
-    "area : " + area + " year : " + year + " month : " + month + " url :" + url
-  );
   fm.action = url;
   fm.submit();
 };
@@ -45,5 +42,3 @@ const init_area_selected = (area_data) => {
     }
   }
 };
-
-const ctx = document.getElementById("usageAreaChart");

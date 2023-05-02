@@ -22,6 +22,7 @@ ALLOWED_HOSTS = ['127.0.0.1']
 INSTALLED_APPS = [
     'mainapp',
     'referenceapp',
+    'peopleapp',
     'sass_processor',
     'django.contrib.admin',
     'django.contrib.auth',

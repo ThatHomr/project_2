@@ -54,7 +54,7 @@ class Data_View :
         #     start_cell="bottom-left",  # 시작 위치를 바꿀 수 있음
         #     subplot_titles=("Plot 1", "Plot 2", "Plot 3", "Plot 4") # 각 Subplot 별 subtitle 넣기
         # )
-
+        
         self.fig.add_trace(go.Scatter(x=self.df_data["월"], y=self.df_data["사용량"],
                     mode='lines+markers', # Line Plot에 마커찍기
                     name='lines+markers'))
