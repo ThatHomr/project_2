@@ -18,22 +18,22 @@ if platform.system() == 'Windows':  # 현재 운영체제가 Windows인 경우
 
 
 
-class Tourist_View :
+class CPI_View :
 
     ### 클래스 생성 시점에 아래 함수들 순서대로 호출 실행(저장까지)
     def __init__(self) :
-        self.initTourist_DF()        
-        self.initTourist_Visualization()
-        self.saveTourist_Fig()
+        self.initCPI_DF()        
+        self.initCPI_Visualization()
+        self.saveCPI_Fig()
 
     ### 데이터 데이터프레임으로 읽어들이기
-    def initTourist_DF(self) :
-        self.df = pd.read_csv("기간_관광객_전력소비량.csv")
+    def initCPI_DF(self) :
+        self.df_result = pd.read_csv("기간_물가지수_전력소비량.csv")
         
     ### 데이터 전처리를 마친 csv 파일을 로드했으므로 전처리 함수는 생략
     
     ###  그래프 시각화 함수
-    def initTourist_Visualization(self) :
+    def initCPI_Visualization(self) :
         # 폰트 설정
         plt.rcParams['font.family'] = 'D2Coding'  
         plt.rcParams['font.size'] = 15
@@ -42,22 +42,22 @@ class Tourist_View :
         fig, ax1 = plt.subplots(figsize=(15,6),nrows=1,ncols=1)
 
         color_1 = 'tab:blue'
-        ax1.set_title('2010~2021 평균 전력소비량 대비 입국 관광객 수', fontsize=12)
+        ax1.set_title('2010~2021 평균 전력소비량 대비 평균 소비자물가지수', fontsize=12)
         ax1.set_xlabel('기간')
         ax1.set_ylabel('전력소비량', fontsize=12, color=color_1)
-        ax1.plot(self.df.index, self.df.전력소비량 , marker='o', color=color_1,linewidth=3)
+        ax1.plot(self.df_result.index, self.df_result.전력소비량 , marker='o', color=color_1,linewidth=3)
         ax1.tick_params(axis='y', labelcolor=color_1)
 
 
         ax2 = ax1.twinx() 
         color_2 = 'tab:red'
-        ax2.set_ylabel('관광객', fontsize=12, color=color_2)
-        ax2.plot(self.df.index, self.df.관광객, marker='o', color=color_2,linewidth=3)
+        ax2.set_ylabel('물가지수', fontsize=12, color=color_2)
+        ax2.plot(self.df_result.index, self.df_result.물가지수, marker='o', color=color_2,linewidth=3)
         ax2.tick_params(axis='y', labelcolor=color_2)
 
         fig.tight_layout()
         plt.show()
 
     ### 그래프 저장하기
-    def saveTourist_Fig(self) :
-        self.fig.savefig("./Tourist_fig.png")
+    def saveCPI_Fig(self) :
+        self.fig.savefig("./CPI_Matplotlib.png")
