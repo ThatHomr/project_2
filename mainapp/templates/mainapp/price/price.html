@@ -26,7 +26,11 @@
     <!-- Custom styles for this template-->
     <link href="../../static/mainapp/css/sb-admin-2.min.css" rel="stylesheet" />
   </head>
-  <body id="page-top">
+  <body
+    id="page-top"
+    onload="init_year_selected('{{ year_data }}'),
+            init_month_selected('{{ month_data }}');"
+  >
     <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
@@ -37,7 +41,7 @@
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href=""
+          href="http://127.0.0.1:8000/"
         >
           <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
@@ -50,7 +54,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="http://127.0.0.1:8000/">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Home 페이지</span></a
           >
@@ -129,7 +133,7 @@
           >
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">경제관련 데이터</h6>
-              <a class="collapse-item" href="buttons.html">소비자물가지수</a>
+              <a class="collapse-item" href="/main/price/">소비자물가지수</a>
               <a class="collapse-item" href="cards.html">코스피</a>
             </div>
           </div>
@@ -221,7 +225,7 @@
             aria-controls="collapseUtilities"
           >
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Utilities</span>
+            <span>Reference</span>
           </a>
           <div
             id="collapseUtilities"
@@ -230,8 +234,8 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Custom Utilities:</h6>
-              <a class="collapse-item" href="utilities-color.html">Colors</a>
+              <h6 class="collapse-header">전력</h6>
+              <a class="collapse-item" href="">기본 틀</a>
               <a class="collapse-item" href="utilities-border.html">Borders</a>
               <a class="collapse-item" href="utilities-animation.html"
                 >Animations</a
@@ -275,7 +279,117 @@
           </nav>
           <!-- End of Topbar -->
           <!--============================================================================-->
+          <div class="row">
+            <!-- Area Chart -->
+            <div class="col-xl-8 col-lg-7">
+              <div class="card shadow mb-4">
+                <form id="fm" name="fm" method="get" action="#">
+                  <!-- Card Header - Dropdown -->
+                  <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between btn-group"
+                  >
+                    <h6 class="m-0 font-weight-bold text-primary">
+                      전력량 map-view {{year_data}}년 {{month_data}}월
+                    </h6>
+                    <div class="mb-4">
+                      <select
+                        class="form-select form-select-sm"
+                        aria-label=".form-select-sm example"
+                        name="year_data"
+                        onchange="goYearMonth()"
+                      >
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                      </select>
+                      <select
+                        class="form-select form-select-sm"
+                        aria-label=".form-select-sm example"
+                        name="month_data"
+                        onchange="goYearMonth()"
+                      >
+                        <option value="1">1월</option>
+                        <option value="2">2월</option>
+                        <option value="3">3월</option>
+                        <option value="4">4월</option>
+                        <option value="5">5월</option>
+                        <option value="6">6월</option>
+                        <option value="7">7월</option>
+                        <option value="8">8월</option>
+                        <option value="9">9월</option>
+                        <option value="10">10월</option>
+                        <option value="11">11월</option>
+                        <option value="12">12월</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="row-cols-1">{{ map_html | safe }}</div>
+                </div>
+              </div>
+            </div>
 
+            <!-- Pie Chart -->
+            <div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+                >
+                  <h6 class="m-0 font-weight-bold text-primary">
+                    Revenue Sources
+                  </h6>
+                  <div class="dropdown no-arrow">
+                    <a
+                      class="dropdown-toggle"
+                      href="#"
+                      role="button"
+                      id="dropdownMenuLink"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i
+                        class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"
+                      ></i>
+                    </a>
+                    <div
+                      class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                      aria-labelledby="dropdownMenuLink"
+                    >
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-pie pt-4 pb-2">
+                    <canvas id="myPieChart"></canvas>
+                  </div>
+                  <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-primary"></i> Direct
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-success"></i> Social
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-info"></i> Referral
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <!--============================================================================-->
         </div>
         <!-- End of Main Content -->
@@ -310,5 +424,6 @@
     <!-- Page level custom scripts -->
     <script src="../../static/mainapp/js/demo/chart-area-demo.js"></script>
     <script src="../../static/mainapp/js/demo/chart-pie-demo.js"></script>
+    <script src="\static\mainapp\js\reference.js"></script>
   </body>
 </html>

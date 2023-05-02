@@ -31,8 +31,9 @@
   </head>
   <body
     id="page-top"
-    onload="init_lpord_selected('{{ year_data }}'),
-            init_pord_selected('{{ month_data }}');"
+    onload="init_year_selected('{{ year_data }}'),
+            init_month_selected('{{ month_data }}'),
+            init_area_selected('{{ area_data }}');"
   >
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -282,18 +283,17 @@
           </nav>
           <!-- End of Topbar -->
           <!--============================================================================-->
-          <div class="row">
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-              <div class="card shadow mb-4">
-                <form id="fm" name="fm" method="get" action="#">
-                  {% csrf_token %}
+          <form id="fm" name="fm" method="get" action="#">
+            <div class="row">
+              <!-- Area Chart -->
+              <div class="col-xl-8 col-lg-7">
+                <div class="card shadow mb-4">
                   <!-- Card Header - Dropdown -->
                   <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between btn-group"
                   >
                     <h6 class="m-0 font-weight-bold text-primary">
-                      전력량 map-view
+                      전력량 map-view {{year_data}}년 {{month_data}}월
                     </h6>
                     <div class="mb-4">
                       <select
@@ -302,7 +302,7 @@
                         name="year_data"
                         onchange="goYear()"
                       >
-                        <option selected value="2016">2016</option>
+                        <option value="2016">2016</option>
                         <option value="2017">2017</option>
                         <option value="2018">2018</option>
                         <option value="2019">2019</option>
@@ -313,8 +313,9 @@
                         class="form-select form-select-sm"
                         aria-label=".form-select-sm example"
                         name="month_data"
+                        onchange="goYear()"
                       >
-                        <option selected value="1">1월</option>
+                        <option value="1">1월</option>
                         <option value="2">2월</option>
                         <option value="3">3월</option>
                         <option value="4">4월</option>
@@ -329,70 +330,59 @@
                       </select>
                     </div>
                   </div>
-                </form>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="row-cols-1">{{ map_html | safe }}</div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="row-cols-1">{{ map_html | safe }}</div>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                >
-                  <h6 class="m-0 font-weight-bold text-primary">
-                    Revenue Sources
-                  </h6>
-                  <div class="dropdown no-arrow">
-                    <a
-                      class="dropdown-toggle"
-                      href="#"
-                      role="button"
-                      id="dropdownMenuLink"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <i
-                        class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"
-                      ></i>
-                    </a>
-                    <div
-                      class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuLink"
-                    >
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
+            <div class="row">
+              <!-- Area Chart -->
+              <div class="col-xl-8 col-lg-7">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - 그래프 -->
+                  <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between btn-group"
+                  >
+                    <h6 class="m-0 font-weight-bold text-primary">
+                      전력량 {{year_data}}년 {{area_data}} 지역 그래프
+                    </h6>
+                    <div class="mb-4">
+                      <select
+                        class="form-select form-select-sm"
+                        aria-label=".form-select-sm example"
+                        name="area_data"
+                        onchange="goYear()"
+                      >
+                        <option value="서울특별시">서울특별시</option>
+                        <option value="강원도">강원도</option>
+                        <option value="경기도">경기도</option>
+                        <option value="경상남도">경상남도</option>
+                        <option value="경상북도">경상북도</option>
+                        <option value="광주광역시">광주광역시</option>
+                        <option value="대구광역시">대구광역시</option>
+                        <option value="대전광역시">대전광역시</option>
+                        <option value="부산광역시">부산광역시</option>
+                        <option value="세종특별자치시">세종특별자치시</option>
+                        <option value="울산광역시">울산광역시</option>
+                        <option value="인천광역시">인천광역시</option>
+                        <option value="전라남도">전라남도</option>
+                        <option value="전라북도">전라북도</option>
+                        <option value="제주특별자치도">제주특별자치도</option>
+                        <option value="충청남도">충청남도</option>
+                        <option value="충청북도">충청북도</option>
+                      </select>
                     </div>
                   </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
-                  </div>
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Direct
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Social
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> Referral
-                    </span>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="row-cols-1">{{ fig | safe }}</div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
           <!--============================================================================-->
         </div>
         <!-- End of Main Content -->
@@ -422,11 +412,10 @@
     <script src="../../static/referenceapp/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../../static/referenceapp/vendor/chart.js/Chart.min.js"></script>
+    <script src="../../static/referenceapp/vendor/chart.js/Chart.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="../../static/referenceapp/js/demo/chart-area-demo.js"></script>
-    <script src="../../static/referenceapp/js/demo/chart-pie-demo.js"></script>
-    <script src="\static\referenceapp\js\reference.js"></script>
+    <script src="/static/referenceapp/js/reference.js"></script>
   </body>
 </html>
