@@ -26,6 +26,7 @@ class Data_View :
         self.df_ver = self.pop_data.query('연도 == @year & 시도 == @area')
         self.df_data = self.df_ver[['월', '사용량', '인구밀도']]
         self.df_data_test = self.df_data.to_dict(orient='records')
+        return self.df_data
         
     # ### 특정년 리스트 만들기
     # def setYearList(self, year_data) :
@@ -41,18 +42,18 @@ class Data_View :
     #     return year_list
     
     ###  그래프 그리기
-    def initVisualization(self, year_data, area_data) :   
+    def initVisualization(self, data) :   
         # 첫번째 x축을 기준으로 그래프 생성
         trace1 = go.Scatter(
-            x = self.df_data["월"],
-            y = self.df_data["사용량"],
+            x = data["월"],
+            y = data["사용량"],
             name='전력 사용량'
         )
         
         # 두번째 x축을 기준으로 그래프 생성
         trace2 = go.Scatter(
-            x = self.df_data["월"],
-            y = self.df_data["인구밀도"],
+            x = data["월"],
+            y = data["인구밀도"],
             name='인구밀도',
             yaxis='y2'
         )

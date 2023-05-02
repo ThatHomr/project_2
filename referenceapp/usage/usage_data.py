@@ -26,6 +26,7 @@ class Data_View :
         self.df_ver = self.usage_data.query('연도 == @year & 시도 == @area')
         self.df_data = self.df_ver[['월', '사용량']]
         self.df_data_test = self.df_data.to_dict(orient='records')
+        return self.df_data
         
     # ### 특정년 리스트 만들기
     # def setYearList(self, year_data) :
@@ -41,22 +42,23 @@ class Data_View :
     #     return year_list
     
     ###  그래프 그리기
-    def initVisualization(self, year_data, area_data) :
-        # 하나의 그래프 객체 선언
-        self.fig = go.Figure()
-        
-        self.fig = make_subplots(
-            subplot_titles=(str(year_data) + "년" + str(area_data) + " 전력사용량")
+    def initVisualization(self, data) :
+        # 첫번째 x축을 기준으로 그래프 생성
+        trace1 = go.Scatter(
+            x = data["월"],
+            y = data["사용량"],
+            name='전력 사용량'
         )
-
-        # fig = make_subplots(
-        #     rows=2, cols=2,
-        #     start_cell="bottom-left",  # 시작 위치를 바꿀 수 있음
-        #     subplot_titles=("Plot 1", "Plot 2", "Plot 3", "Plot 4") # 각 Subplot 별 subtitle 넣기
-        # )
         
-        self.fig.add_trace(go.Scatter(x=self.df_data["월"], y=self.df_data["사용량"],
-                    mode='lines+markers', # Line Plot에 마커찍기
-                    name='lines+markers'))
+        # 하나의 x축과 두 개의 y축으로 레이아웃 생성
+        layout = go.Layout(
+            title='전력 사용량',
+            yaxis=dict(
+                title='전력 사용량'
+            )
+        )
         
-        return self.fig.to_html()
+        # 레이아웃 조합 후 그래프 작성
+        fig = go.Figure(data=[trace1], layout=layout)
+        
+        return fig.to_html()

@@ -14,10 +14,12 @@ def reference(request):
     year = request.GET.get('year', 'ERROR')
     if year == 'ERROR':
         year = 2016
+    year = int(year)
         
     month = request.GET.get('month', 'ERROR')
     if month == 'ERROR':
         month = 1
+    month = int(month)
         
     ### 특정년도 dataframe 생성 및 가져오기
     area = request.GET.get('area', 'ERROR')
@@ -33,7 +35,7 @@ def reference(request):
     map_html = map_view.map_base()
     
     ### 그래프 생성 및 가져오기
-    fig = data_view.initVisualization(year, area)
+    fig = data_view.initVisualization(year_area_data)
     
     ### 전력량 데이터프레임 받아오기
     map_data = map_view.getDataFrame().to_html()
