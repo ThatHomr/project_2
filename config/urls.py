@@ -29,6 +29,8 @@ urlpatterns = [
     path('people/', include('peopleapp.urls')),
     # http://127.0.0.1:8000/price/
     path('price/', include('priceapp.urls')),
+    # http://127.0.0.1:8000/residence/
+    path('residence/', include('residenceapp.urls')),
     # http://127.0.0.1:8000/admin/
     path('admin/', admin.site.urls),
 ]

@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'referenceapp',
     'peopleapp',
     'priceapp',
+    'residenceapp',
     'sass_processor',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -14,7 +14,7 @@
 
     <!-- Custom fonts for this template-->
     <link
-      href="../../static/referenceapp/vendor/fontawesome-free/css/all.min.css"
+      href="../../static/priceapp/vendor/fontawesome-free/css/all.min.css"
       rel="stylesheet"
       type="text/css"
     />
@@ -25,14 +25,13 @@
 
     <!-- Custom styles for this template-->
     <link
-      href="../../static/referenceapp/css/sb-admin-2.min.css"
+      href="../../static/priceapp/css/sb-admin-2.min.css"
       rel="stylesheet"
     />
   </head>
   <body
     id="page-top"
     onload="init_year_selected('{{ year_data }}'),
-            init_month_selected('{{ month_data }}'),
             init_area_selected('{{ area_data }}');"
   >
     <!-- Page Wrapper -->
@@ -312,7 +311,7 @@
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between btn-group"
                   >
                     <h6 class="m-0 font-weight-bold text-primary">
-                      전력량 map-view {{year_data}}년 {{month_data}}월
+                      전력량 지역내생산 map-view {{year_data}}년
                     </h6>
                     <div class="mb-4">
                       <select
@@ -321,12 +320,12 @@
                         name="year_data"
                         onchange="goYear()"
                       >
-                        <option value="2010">2016년</option>
-                        <option value="2011">2016년</option>
-                        <option value="2012">2016년</option>
-                        <option value="2013">2016년</option>
-                        <option value="2014">2016년</option>
-                        <option value="2015">2016년</option>
+                        <option value="2010">2010년</option>
+                        <option value="2011">2011년</option>
+                        <option value="2012">2012년</option>
+                        <option value="2013">2013년</option>
+                        <option value="2014">2014년</option>
+                        <option value="2015">2015년</option>
                         <option value="2016">2016년</option>
                         <option value="2017">2017년</option>
                         <option value="2018">2018년</option>
@@ -352,7 +351,7 @@
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between btn-group"
                   >
                     <h6 class="m-0 font-weight-bold text-primary">
-                      전력량 {{area_data}} 지역 그래프
+                      전력량 지역내총생산 {{area_data}} 지역 그래프
                     </h6>
                     <div class="mb-4">
                       <select
@@ -408,20 +407,20 @@
     <!-- End of Page Wrapper -->
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../../static/referenceapp/vendor/jquery/jquery.min.js"></script>
-    <script src="../../static/referenceapp/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../static/priceapp/vendor/jquery/jquery.min.js"></script>
+    <script src="../../static/priceapp/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../../static/referenceapp/vendor/jquery-easing/jquery.easing.js"></script>
+    <script src="../../static/priceapp/vendor/jquery-easing/jquery.easing.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../../static/referenceapp/js/sb-admin-2.min.js"></script>
+    <script src="../../static/priceapp/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../../static/referenceapp/vendor/chart.js/Chart.js"></script>
+    <script src="../../static/priceapp/vendor/chart.js/Chart.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../../static/referenceapp/js/demo/chart-area-demo.js"></script>
-    <script src="/static/referenceapp/js/reference.js"></script>
+    <script src="../../static/priceapp/js/demo/chart-area-demo.js"></script>
+    <script src="/static/priceapp/js/grdp.js"></script>
   </body>
 </html>
