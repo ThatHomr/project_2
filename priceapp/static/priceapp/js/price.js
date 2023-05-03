@@ -3,7 +3,6 @@ const goYear = () => {
 
   const year_data = fm.year_data.value;
   let url = "/price/price_view/?year_data=" + year_data;
-  alert("year: " + year_data + " url: " + url);
   fm.action = url;
   fm.submit();
 };
