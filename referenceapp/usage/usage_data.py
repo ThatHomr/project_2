@@ -59,6 +59,6 @@ class Data_View :
         )
         
         # 레이아웃 조합 후 그래프 작성
-        fig = go.Figure(data=[trace1], layout=layout)
+        fig = go.Figure(data=trace1, layout=layout)
         
         return fig.to_html()

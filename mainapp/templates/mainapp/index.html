@@ -26,7 +26,12 @@
     <!-- Custom styles for this template-->
     <link href="../../static/mainapp/css/sb-admin-2.min.css" rel="stylesheet" />
   </head>
-  <body id="page-top">
+  <body
+    id="page-top"
+    onload="init_year_selected('{{ year_data }}'),
+            init_month_selected('{{ month_data }}'),
+            init_area_selected('{{ area_data }}');"
+  >
     <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
@@ -114,7 +119,9 @@
           >
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">조세관련 데이터</h6>
-              <a class="collapse-item" href="buttons.html">지역별 소득세</a>
+              <a class="collapse-item" href="http://127.0.0.1:8000/tax/local/"
+                >지역별 소득세</a
+              >
             </div>
           </div>
         </li>
@@ -313,7 +320,106 @@
           </nav>
           <!-- End of Topbar -->
           <!--============================================================================-->
-
+          <form id="fm" name="fm" method="get" action="#">
+            <div class="row">
+              <!-- Area Chart -->
+              <div class="col-xl-8 col-lg-7">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between btn-group"
+                  >
+                    <h6 class="m-0 font-weight-bold text-primary">
+                      전력량 map-view {{year_data}}년 {{month_data}}월
+                    </h6>
+                    <div class="mb-4">
+                      <select
+                        class="form-select form-select-sm"
+                        aria-label=".form-select-sm example"
+                        name="year_data"
+                        onchange="goYear()"
+                      >
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                      </select>
+                      <select
+                        class="form-select form-select-sm"
+                        aria-label=".form-select-sm example"
+                        name="month_data"
+                        onchange="goYear()"
+                      >
+                        <option value="1">1월</option>
+                        <option value="2">2월</option>
+                        <option value="3">3월</option>
+                        <option value="4">4월</option>
+                        <option value="5">5월</option>
+                        <option value="6">6월</option>
+                        <option value="7">7월</option>
+                        <option value="8">8월</option>
+                        <option value="9">9월</option>
+                        <option value="10">10월</option>
+                        <option value="11">11월</option>
+                        <option value="12">12월</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="row-cols-1">{{ map_html | safe }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Area Chart -->
+              <div class="col-xl-8 col-lg-7">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - 그래프 -->
+                  <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between btn-group"
+                  >
+                    <h6 class="m-0 font-weight-bold text-primary">
+                      전력량 {{year_data}}년 {{area_data}} 지역 그래프
+                    </h6>
+                    <div class="mb-4">
+                      <select
+                        class="form-select form-select-sm"
+                        aria-label=".form-select-sm example"
+                        name="area_data"
+                        onchange="goYear()"
+                      >
+                        <option value="서울특별시">서울특별시</option>
+                        <option value="강원도">강원도</option>
+                        <option value="경기도">경기도</option>
+                        <option value="경상남도">경상남도</option>
+                        <option value="경상북도">경상북도</option>
+                        <option value="광주광역시">광주광역시</option>
+                        <option value="대구광역시">대구광역시</option>
+                        <option value="대전광역시">대전광역시</option>
+                        <option value="부산광역시">부산광역시</option>
+                        <option value="세종특별자치시">세종특별자치시</option>
+                        <option value="울산광역시">울산광역시</option>
+                        <option value="인천광역시">인천광역시</option>
+                        <option value="전라남도">전라남도</option>
+                        <option value="전라북도">전라북도</option>
+                        <option value="제주특별자치도">제주특별자치도</option>
+                        <option value="충청남도">충청남도</option>
+                        <option value="충청북도">충청북도</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="row-cols-1">{{ fig | safe }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
           <!--============================================================================-->
         </div>
         <!-- End of Main Content -->
@@ -348,5 +454,6 @@
     <!-- Page level custom scripts -->
     <script src="../../static/mainapp/js/demo/chart-area-demo.js"></script>
     <script src="../../static/mainapp/js/demo/chart-pie-demo.js"></script>
+    <script src="/static/mainapp/js/index.js"></script>
   </body>
 </html>

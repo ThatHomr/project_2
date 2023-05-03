@@ -20,6 +20,8 @@ urlpatterns = [
     path('industry/', include('industryapp.urls')),
     # http://127.0.0.1:8000/culture/
     path('culture/', include('cultureapp.urls')),
+    # http://127.0.0.1:8000/tax/
+    path('tax/', include('taxapp.urls')),
     # http://127.0.0.1:8000/admin/
     path('admin/', admin.site.urls),
 ]
