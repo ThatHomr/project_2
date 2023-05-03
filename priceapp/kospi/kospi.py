@@ -6,7 +6,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-class Data_tourism_View :
+class Data_kospi_View :
 
     ### 클래스 생성 시점에 아래 함수들 순서대로 호출 실행(저장까지)
     def __init__(self) :

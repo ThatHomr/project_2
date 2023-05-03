@@ -27,19 +27,6 @@ class Data_grdp_View :
         self.df_data_test = self.df_data.to_dict(orient='records')
         return self.df_data
         
-    # ### 특정년 리스트 만들기
-    # def setYearList(self, year_data) :
-    #     self.year = year_data
-    #     if self.year is "ERROR":
-    #         self.year = 2021
-    #     self.year = int(self.year)
-
-    #     self.df_ver = self.usage_data.query('연도 == @year')
-    #     year_list = []
-    #     for item in self.df.ver :
-    #         year_list.append(item['사용량'])
-    #     return year_list
-    
     ###  그래프 그리기
     def initVisualization(self, data) :
         # 첫번째 x축을 기준으로 그래프 생성
@@ -69,12 +56,6 @@ class Data_grdp_View :
                 side='right'
             )
         )
-
-        # fig = make_subplots(
-        #     rows=2, cols=2,
-        #     start_cell="bottom-left",  # 시작 위치를 바꿀 수 있음
-        #     subplot_titles=("Plot 1", "Plot 2", "Plot 3", "Plot 4") # 각 Subplot 별 subtitle 넣기
-        # )
         
         # 레이아웃 조합 후 그래프 작성
         self.fig = go.Figure(data=[trace1, trace2], layout=layout)

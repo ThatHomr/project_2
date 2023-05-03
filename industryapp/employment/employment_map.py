@@ -35,29 +35,20 @@ class Employment_map :
         self.df_data = self.df_ver[['시도', '고용률', '사용량', '위도', '경도']]
         self.df_data_test = self.df_data.to_dict(orient='records')
         
-    # json
     def initJson(self) :
-        # 시도구분된 지역 json 파일 가져오기
         jsonfile = open('./industryapp/employment/Sido.json','r',encoding='utf8').read()     
         self.jsondata = json.loads(jsonfile)                             
-        # Sido.json을 복사해서 일부 특성(Key와 Record) 추가
         self.jsondata_loc = {'type': 'FeatureCollection'}                
-        self.jsondata_pick = []
-        
-    # 데이터에 대한 지도 맵 생성
+        self.jsondata_pick = []                     
+    
     def getMap(self) :
         for idx in self.jsondata['features']:
-            # Sido.
             idx['id'] = idx['properties']['CTP_KOR_NM']             
             for i in self.df_data_test:
-                # Sido.json의 지역과 일치하면 pop이라는 Key를 새로 만들고
                 if i['시도'] == idx['properties']['CTP_KOR_NM']:    
-                    # 해당 지역의 사용량을 입력
                     idx['properties']['pop'] = i['사용량']         
-            # 추가된 값을 jsondata_pick에 저장
             self.jsondata_pick.append(idx)                               
-        # jsondata_loc의 features 키에 저장
-        self.jsondata_loc['features'] = self.jsondata_pick                         
+        self.jsondata_loc['features'] = self.jsondata_pick 
         
     ### 지도맵 그리기
     def map_base(self) :
@@ -84,8 +75,8 @@ class Employment_map :
                                 fill_color='red',
                                 fill_opacity=0.7,
                                 tooltip=row['시도']).add_to(cho)
-        return self.residence_map._repr_html_()
+        return self.employment_map._repr_html_()
     
     ### 데이터프레임 리턴하기
     def getDataFrame(self) :
-        return self.residence_data
+        return self.employment_data

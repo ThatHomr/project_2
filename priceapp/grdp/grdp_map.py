@@ -39,13 +39,13 @@ class Grdp_map :
         self.jsondata_loc['features'] = self.jsondata_pick 
 
     def map_base(self) :
-        self.pop_map = folium.Map(location=[36.0068191, 127.6607805],zoom_start=7) 
+        self.grdp_map = folium.Map(location=[36.0068191, 127.6607805],zoom_start=7) 
         cho = folium.Choropleth(geo_data=self.jsondata_loc,              
                         data=self.df_data,                          
                         columns=['시도', '지역내총생산'],              
                         fill_color="YlGnBu",
                         key_on='feature.id',
-                        legend_name='맵').add_to(self.pop_map)       
+                        legend_name='맵').add_to(self.grdp_map)       
         cho.geojson.add_child( 
             folium.features.GeoJsonPopup(['CTP_KOR_NM','pop'],labels=False,style='font-weight : bold')
         )
@@ -53,7 +53,7 @@ class Grdp_map :
             lat = row['위도']
             lon = row['경도']
             folium.CircleMarker(location=[lat, lon],
-                                radius=row['사용량'] / 5000000, # 전력량 값을 radius로 사용
+                                radius=row['사용량'] / 7000000, # 전력량 값을 radius로 사용
                                 color='red',
                                 fill_color='red',
                                 fill_opacity=0.7,

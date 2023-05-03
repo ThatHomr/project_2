@@ -173,9 +173,16 @@
           >
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">산업 및 노동관련 데이터</h6>
-              <a class="collapse-item" href="buttons.html">데이터 센터 현황</a>
-              <a class="collapse-item" href="cards.html">고용인구</a>
-              <a class="collapse-item" href="cards.html">고용률</a>
+              <a
+                class="collapse-item"
+                href="http://127.0.0.1:8000/industry/factory/"
+                >공장면적</a
+              >
+              <a
+                class="collapse-item"
+                href="http://127.0.0.1:8000/industry/employment/"
+                >고용률</a
+              >
             </div>
           </div>
         </li>
@@ -200,7 +207,7 @@
               <h6 class="collapse-header">문화 & 보건 데이터</h6>
               <a
                 class="collapse-item"
-                href="http://127.0.0.1:8000/culture/employment/"
+                href="http://127.0.0.1:8000/culture/tourism/"
                 >관광객 수</a
               >
               <a class="collapse-item" href="cards.html">의료기간 진료실적</a>
@@ -226,7 +233,9 @@
           >
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">주거 데이터</h6>
-              <a class="collapse-item" href="http://127.0.0.1:8000/residence/"
+              <a
+                class="collapse-item"
+                href="http://127.0.0.1:8000/residence/residence_view/"
                 >전국주택가격 동향</a
               >
             </div>
@@ -260,11 +269,6 @@
               <a class="collapse-item" href="http://127.0.0.1:8000/reference/"
                 >기본 틀</a
               >
-              <a class="collapse-item" href="utilities-border.html">Borders</a>
-              <a class="collapse-item" href="utilities-animation.html"
-                >Animations</a
-              >
-              <a class="collapse-item" href="utilities-other.html">Other</a>
             </div>
           </div>
         </li>
@@ -313,7 +317,7 @@
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between btn-group"
                   >
                     <h6 class="m-0 font-weight-bold text-primary">
-                      전력량 {{year_data}}년 물가지수 그래프
+                      전력량 물가지수 {{year_data}}년 물가지수 그래프
                     </h6>
                     <div class="mb-4">
                       <select

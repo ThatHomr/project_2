@@ -60,15 +60,20 @@ def grdp(request) :
         year = 2021
     year = int(year)
     
+    area = request.GET.get('area_data', 'ERROR')
+    if area == 'ERROR':
+        area = '서울특별시'
+    
     ### 맵 데이터 만들고 받기
     map_view2.setDataFrame(year)
     map_view2.getMap()
     map_view = map_view2.map_base()
     
     ### 그래프 데이터 만들고 받기
-    data_view = data_view2.setYearDataFrame(year)
+    data_view = data_view2.setYearDataFrame(area)
     fig = data_view2.initVisualization(data_view)
     return render(request, 'priceapp/grdp.html', {"data_view" : data_view,
                                                     "year_data" : year,
-                                                    "map_view" : map_view,
+                                                    "area_data" : area,
+                                                    "map_html" : map_view,
                                                     "fig" : fig})

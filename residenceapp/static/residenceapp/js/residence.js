@@ -5,7 +5,13 @@ const goYear = () => {
   const month = fm.month_data.value;
   const area = fm.area_data.value;
 
-  let url = "/residence/?year=" + year + "&month=" + month + "&area=" + area;
+  let url =
+    "/residence/residence_view/?year=" +
+    year +
+    "&month=" +
+    month +
+    "&area=" +
+    area;
   fm.action = url;
   fm.submit();
 };
