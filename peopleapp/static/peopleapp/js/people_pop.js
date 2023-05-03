@@ -11,16 +11,6 @@ const goYear = () => {
     month_data +
     "&area_data=" +
     area_data;
-  alert(
-    "year: " +
-      year_data +
-      " month: " +
-      month_data +
-      " area: " +
-      area_data +
-      " url: " +
-      url
-  );
   fm.action = url;
   fm.submit();
 };

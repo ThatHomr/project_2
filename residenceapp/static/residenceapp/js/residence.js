@@ -4,8 +4,8 @@ const goYear = () => {
   const year = fm.year_data.value;
   const month = fm.month_data.value;
   const area = fm.area_data.value;
-  let url =
-    "/reference/map_view/?year=" + year + "&month=" + month + "&area=" + area;
+
+  let url = "/residence/?year=" + year + "&month=" + month + "&area=" + area;
   fm.action = url;
   fm.submit();
 };

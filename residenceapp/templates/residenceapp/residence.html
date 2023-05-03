@@ -314,7 +314,8 @@
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between btn-group"
                   >
                     <h6 class="m-0 font-weight-bold text-primary">
-                      전력량 map-view {{year_data}}년 {{month_data}}월
+                      전력량 주택가격변동률 map-view {{year_data}}년
+                      {{month_data}}월
                     </h6>
                     <div class="mb-4">
                       <select
@@ -323,18 +324,37 @@
                         name="year_data"
                         onchange="goYear()"
                       >
-                        <option value="2010">2016년</option>
-                        <option value="2011">2016년</option>
-                        <option value="2012">2016년</option>
-                        <option value="2013">2016년</option>
-                        <option value="2014">2016년</option>
-                        <option value="2015">2016년</option>
+                        <option value="2010">2010년</option>
+                        <option value="2011">2011년</option>
+                        <option value="2012">2012년</option>
+                        <option value="2013">2013년</option>
+                        <option value="2014">2014년</option>
+                        <option value="2015">2015년</option>
                         <option value="2016">2016년</option>
                         <option value="2017">2017년</option>
                         <option value="2018">2018년</option>
                         <option value="2019">2019년</option>
                         <option value="2020">2020년</option>
                         <option value="2021">2021년</option>
+                      </select>
+                      <select
+                        class="form-select form-select-sm"
+                        aria-label=".form-select-sm example"
+                        name="month_data"
+                        onchange="goYear()"
+                      >
+                        <option value="1">1월</option>
+                        <option value="2">2월</option>
+                        <option value="3">3월</option>
+                        <option value="4">4월</option>
+                        <option value="5">5월</option>
+                        <option value="6">6월</option>
+                        <option value="7">7월</option>
+                        <option value="8">8월</option>
+                        <option value="9">9월</option>
+                        <option value="10">10월</option>
+                        <option value="11">11월</option>
+                        <option value="12">12월</option>
                       </select>
                     </div>
                   </div>
@@ -354,7 +374,7 @@
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between btn-group"
                   >
                     <h6 class="m-0 font-weight-bold text-primary">
-                      전력량 {{area_data}} 지역 그래프
+                      전력량 주택가격변동률 {{area_data}} 지역 그래프
                     </h6>
                     <div class="mb-4">
                       <select

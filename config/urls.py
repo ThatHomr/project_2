@@ -31,6 +31,8 @@ urlpatterns = [
     path('price/', include('priceapp.urls')),
     # http://127.0.0.1:8000/residence/
     path('residence/', include('residenceapp.urls')),
+    # http://127.0.0.1:8000/industry/
+    path('industry/', include('industryapp.urls')),
     # http://127.0.0.1:8000/admin/
     path('admin/', admin.site.urls),
 ]

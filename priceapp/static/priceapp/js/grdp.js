@@ -3,7 +3,7 @@ const goYear = () => {
 
   const year = fm.year_data.value;
   const area = fm.area_data.value;
-  let url = "/reference/map_view/?year=" + year + "&area=" + area;
+  let url = "/price/grdp/?year=" + year + "&area=" + area;
   fm.action = url;
   fm.submit();
 };
