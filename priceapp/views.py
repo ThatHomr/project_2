@@ -63,6 +63,6 @@ def grdp(request) :
     map_view2.getMap()
     map_view = map_view2.map_base()
     
-    return render(request, 'priceapp/price.html', {"data_view" : data_view,
+    return render(request, 'priceapp/grdp.html', {"data_view" : data_view,
                                                     "year_data" : year,
                                                     "map_view" : map_view})
