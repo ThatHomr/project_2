@@ -53,7 +53,7 @@ class Num_bed_map :
             lat = row['위도']
             lon = row['경도']
             folium.CircleMarker(location=[lat, lon],
-                                radius=row['사용량'] / 1200000,
+                                radius=row['사용량'] / 5000000,
                                 color='red',
                                 fill_color='red',
                                 fill_opacity=0.7,

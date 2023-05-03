@@ -46,7 +46,7 @@ class Employment_map :
             idx['id'] = idx['properties']['CTP_KOR_NM']             
             for i in self.df_data_test:
                 if i['시도'] == idx['properties']['CTP_KOR_NM']:    
-                    idx['properties']['pop'] = i['사용량']         
+                    idx['properties']['pop'] = i['고용률']         
             self.jsondata_pick.append(idx)                               
         self.jsondata_loc['features'] = self.jsondata_pick 
         

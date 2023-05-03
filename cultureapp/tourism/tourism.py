@@ -23,7 +23,7 @@ class Data_tourism_View :
         year = year_data
         
         self.df_ver = self.pop_data.query('연도 == @year')
-        self.df_data = self.df_ver[['월', '사용량', '관광객']]
+        self.df_data = self.df_ver[['월', '전력소비량', '관광객']]
         self.df_data_test = self.df_data.to_dict(orient='records')
         return self.df_data
         
@@ -32,7 +32,7 @@ class Data_tourism_View :
         # 첫번째 x축을 기준으로 그래프 생성
         trace1 = go.Scatter(
             x = data["월"],
-            y = data["사용량"],
+            y = data["전력소비량"],
             name='전력 사용량'
         )
         

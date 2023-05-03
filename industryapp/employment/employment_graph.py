@@ -24,7 +24,7 @@ class Data_View :
         area = area_data
         
         self.df_ver = self.usage_data.query('연도 == @year & 시도 == @area')
-        self.df_data = self.df_ver[['월', '사용량', '고용률', '위도', '경도']]
+        self.df_data = self.df_ver[['월', '사용량', '고용률']]
         self.df_data_test = self.df_data.to_dict(orient='records')
         return self.df_data
     
@@ -40,7 +40,8 @@ class Data_View :
         trace2 = go.Scatter(
             x = data["월"],
             y = data["고용률"],
-            name='고용률'
+            name='고용률',
+            yaxis='y2'
         )
         
         # 하나의 x축과 두 개의 y축으로 레이아웃 생성
@@ -50,7 +51,7 @@ class Data_View :
                 title='전력 사용량'
             ),
             yaxis2=dict(
-                title='고용률',
+                title='공장면적',
                 overlaying='y',
                 side='right'
             )

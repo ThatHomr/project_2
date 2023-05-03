@@ -7,5 +7,7 @@ urlpatterns = [
     path('tourism/', views.tourism),
     ### http://127.0.0.1:8000/culture/medical/
     path('medical/', views.medical),
+    ### http://127.0.0.1:8000/culture/hospital/
+    path('hospital/', views.hospital),
 
 ]
