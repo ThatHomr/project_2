@@ -6,7 +6,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-class Data_all_View :
+class Data_tourism_all :
 
     ### 클래스 생성 시점에 아래 함수들 순서대로 호출 실행(저장까지)
     def __init__(self) :
@@ -14,43 +14,42 @@ class Data_all_View :
 
     ### 데이터 읽어들이기
     def initDataFrame(self) :
-        file_path = "./industryapp/employment/전력량_고용률_마커_all.csv"
-        self.usage_data = pd.read_csv(file_path)
-        self.usage_data.drop(columns=['Unnamed: 0'], inplace=True)
-
+        file_path = "./cultureapp/tourism/관광객_전력소비량.csv"
+        self.pop_data = pd.read_csv(file_path)
+        self.pop_data.drop(columns=['Unnamed: 0'], inplace=True)
+ 
     # 특정 년 받아와서 데이터 프레임 만들기
-    def setYearDataFrame(self, area_data) :
-        area = area_data
-        
-        self.df_ver = self.usage_data.query('시도 == @area')
-        self.df_data = self.df_ver[['년월', '사용량', '고용률']]
+    def setYearDataFrame(self) :    
+        self.df_ver = self.pop_data
+        self.df_data = self.df_ver[['기간', '전력소비량', '관광객']]
         self.df_data_test = self.df_data.to_dict(orient='records')
         return self.df_data
-    
+        
     ###  그래프 그리기
-    def initVisualization(self, data) :
+    def initVisualization(self, data) :   
         # 첫번째 x축을 기준으로 그래프 생성
         trace1 = go.Scatter(
-            x = data["년월"],
-            y = data["사용량"],
+            x = data["기간"],
+            y = data["전력소비량"],
             name='전력 사용량'
         )
+        
         # 두번째 x축을 기준으로 그래프 생성
         trace2 = go.Scatter(
-            x = data["년월"],
-            y = data["고용률"],
-            name='고용률',
+            x = data["기간"],
+            y = data["관광객"],
+            name='관광객',
             yaxis='y2'
         )
         
         # 하나의 x축과 두 개의 y축으로 레이아웃 생성
         layout = go.Layout(
-            title='전력 사용량',
+            title='전력 사용량 VS 관광객',
             yaxis=dict(
                 title='전력 사용량'
             ),
             yaxis2=dict(
-                title='공장면적',
+                title='관광객',
                 overlaying='y',
                 side='right'
             )

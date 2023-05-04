@@ -14,7 +14,7 @@ class Data_all_View :
 
     ### 데이터 읽어들이기
     def initDataFrame(self) :
-        file_path = "./industryapp/employment/전력량_고용률_마커_all.csv"
+        file_path = "./referenceapp/usage/전력 사용량 14차.csv"
         self.usage_data = pd.read_csv(file_path)
         self.usage_data.drop(columns=['Unnamed: 0'], inplace=True)
 
@@ -23,7 +23,7 @@ class Data_all_View :
         area = area_data
         
         self.df_ver = self.usage_data.query('시도 == @area')
-        self.df_data = self.df_ver[['년월', '사용량', '고용률']]
+        self.df_data = self.df_ver[['년월', '사용량']]
         self.df_data_test = self.df_data.to_dict(orient='records')
         return self.df_data
     
@@ -35,28 +35,16 @@ class Data_all_View :
             y = data["사용량"],
             name='전력 사용량'
         )
-        # 두번째 x축을 기준으로 그래프 생성
-        trace2 = go.Scatter(
-            x = data["년월"],
-            y = data["고용률"],
-            name='고용률',
-            yaxis='y2'
-        )
         
         # 하나의 x축과 두 개의 y축으로 레이아웃 생성
         layout = go.Layout(
             title='전력 사용량',
             yaxis=dict(
                 title='전력 사용량'
-            ),
-            yaxis2=dict(
-                title='공장면적',
-                overlaying='y',
-                side='right'
             )
         )
         
         # 레이아웃 조합 후 그래프 작성
-        fig = go.Figure(data=[trace1, trace2], layout=layout)
+        fig = go.Figure(data=[trace1], layout=layout)
         
         return fig.to_html()

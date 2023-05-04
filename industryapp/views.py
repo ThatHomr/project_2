@@ -5,6 +5,7 @@ from django.http import HttpResponse
 ### 전력량 주택가격변동률 시각화 사용자 라이브러리
 # from industryapp.employment.employment_map import Employment_map
 from industryapp.employment.employment_graph import Data_View
+from industryapp.employment.employment_graph_all import Data_all_View
 from industryapp.factory.factory_map import Factory_map
 from industryapp.factory.factory_graph import Data_factory_View
 
@@ -12,6 +13,7 @@ from industryapp.factory.factory_graph import Data_factory_View
 def employment(request) :
     ### 클래스 생성시키기
     data_view2 = Data_View()
+    data_view3 = Data_all_View()
     # map_view = Employment_map()
     
     ### 그래프 생성을 위한 인자값 받기
@@ -31,7 +33,9 @@ def employment(request) :
        
     ### 그래프 생성 및 가져오기
     data_view = data_view2.setYearDataFrame(year, area)
+    data_view1 = data_view3.setYearDataFrame(area)
     fig = data_view2.initVisualization(data_view)
+    fig2 = data_view3.initVisualization(data_view1)
     
     ### 지도 생성을 위한 인자값 넣어서 dataframe 생성
     # map_data = map_view.setDataFrame(year, month)
@@ -45,7 +49,8 @@ def employment(request) :
                                                             # "month_data" : month,
                                                             "area_data" : area,
                                                             # "map_html" : map_html,
-                                                            "fig" : fig})
+                                                            "fig" : fig,
+                                                            "fig2" : fig2})
 
 def factory(request) :
     ### 클래스 생성시키기

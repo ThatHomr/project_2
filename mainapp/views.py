@@ -4,6 +4,7 @@ from django.http import HttpResponse
 ### 전력량 지도맵 시각화 사용자 라이브러리
 from mainapp.usage.usage import Usage_map
 from mainapp.usage.usage_data import Data_View
+from mainapp.usage.usage_data_all import Data_all_View
 
 # 최초 인덱스 페이지
 # index 페이지
@@ -11,6 +12,7 @@ def index(request):
     ### 클래스 생성시키기
     map_view = Usage_map()
     data_view = Data_View()
+    data_view2 = Data_all_View()
     ### 지도 생성을 위한 인자값 받기
     year = request.GET.get('year_data', 'ERROR')
     if year == 'ERROR':
@@ -27,6 +29,7 @@ def index(request):
     if area == 'ERROR':
         area = '서울특별시'
     year_area_data = data_view.setYearDataFrame(year, area)
+    area_data = data_view2.setYearDataFrame(area)
         
     ### 지도 생성을 위한 인자값 넣어서 dataframe 생성
     map_data = map_view.setDataFrame(year, month) 
@@ -37,6 +40,7 @@ def index(request):
     
     ### 그래프 생성 및 가져오기
     fig = data_view.initVisualization(year_area_data)
+    fig2 = data_view2.initVisualization(area_data)
     
     ### 전력량 데이터프레임 받아오기
     map_data = map_view.getDataFrame().to_html()
@@ -45,7 +49,8 @@ def index(request):
                                                 "year_data" : year,
                                                 "month_data" : month,
                                                 "area_data" : area,
-                                                "fig" : fig})
+                                                "fig" : fig,
+                                                "fig2" : fig2})
 
 
 # main 페이지
