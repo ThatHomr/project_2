@@ -29,25 +29,30 @@ class Data_all_View :
     
     ###  그래프 그리기
     def initVisualization(self, data) :
-        # 첫번째 x축을 기준으로 그래프 생성
-        trace1 = go.Scatter(
-            x = data["년월"],
-            y = data["사용량"],
+        # x, y 데이터로 그래프 생성
+        trace = go.Scattergl(
+            x=data['년월'],
+            y=data['사용량'],
+            mode='lines',
+            line=dict(
+                color='blue'
+            ),
             name='전력 사용량'
         )
-        
-        # 하나의 x축과 두 개의 y축으로 레이아웃 생성
+
+        # 레이아웃 생성
         layout = go.Layout(
             title='전력 사용량',
             xaxis=dict(
-                title="Date"
+                title='년월',
+                type='date'
             ),
             yaxis=dict(
-                title='전력 사용량'
+                title='사용량'
             )
         )
         
         # 레이아웃 조합 후 그래프 작성
-        fig = go.Figure(data=[trace1], layout=layout)
+        fig = go.Figure(data=[trace], layout=layout)
         
         return fig.to_html()
