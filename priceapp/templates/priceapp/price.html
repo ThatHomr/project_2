@@ -294,7 +294,7 @@
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between btn-group"
                   >
                     <h6 class="m-0 font-weight-bold text-primary">
-                      전력량 물가지수 {{year_data}}년 물가지수 그래프
+                      전력량 물가지수 {{year_data}}년 그래프
                     </h6>
                     <div class="mb-4">
                       <select
@@ -321,6 +321,25 @@
                   <!-- Card Body -->
                   <div class="card-body">
                     <div class="row-cols-1">{{ fig | safe }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Area Chart -->
+              <div class="col-xl-8 col-lg-7">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - 그래프 -->
+                  <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between btn-group"
+                  >
+                    <h6 class="m-0 font-weight-bold text-primary">
+                      전력량 물가지수 그래프
+                    </h6>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="row-cols-1">{{ fig3 | safe }}</div>
                   </div>
                 </div>
               </div>

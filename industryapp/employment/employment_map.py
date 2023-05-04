@@ -73,7 +73,8 @@ class Employment_map :
                                 radius=row['사용량'] / 700000, # 전력량 값을 radius로 사용
                                 color='red',
                                 fill_color='red',
-                                fill_opacity=0.7,
+                                fill_opacity=0.3,
+                                popup=(row['시도'], row['사용량']),
                                 tooltip=row['시도']).add_to(cho)
         return self.employment_map._repr_html_()
     
