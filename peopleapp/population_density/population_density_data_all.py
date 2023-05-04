@@ -28,7 +28,7 @@ class Data_all_View :
         return self.df_data
 
     ###  그래프 그리기
-    def initVisualization(self, data) :   
+    def initVisualization(self, data) :      
         # 첫번째 x축을 기준으로 그래프 생성
         trace1 = go.Scatter(
             x = data["년월"],
@@ -56,7 +56,6 @@ class Data_all_View :
                 side='right'
             )
         )
-        
         # 레이아웃 조합 후 그래프 작성
         self.fig = go.Figure(data=[trace1, trace2], layout=layout)
         
