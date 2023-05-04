@@ -39,6 +39,13 @@ class Data_all_View :
         # 하나의 x축과 두 개의 y축으로 레이아웃 생성
         layout = go.Layout(
             title='전력 사용량',
+            xaxis=dict(
+                type="date",
+                tickformat="%Y-%m",  # x축 라벨 포맷 설정
+                tickmode="auto",
+                nticks=10,  # x축 라벨 개수 설정
+                title="Date"
+            ),
             yaxis=dict(
                 title='전력 사용량'
             )
