@@ -14,7 +14,7 @@ class Data_all_View :
 
     ### 데이터 읽어들이기
     def initDataFrame(self) :
-        file_path = "./referenceapp/usage/전력 사용량 14차.csv"
+        file_path = "./mainapp/usage/전력 사용량 14차.csv"
         self.usage_data = pd.read_csv(file_path)
         self.usage_data.drop(columns=['Unnamed: 0'], inplace=True)
 

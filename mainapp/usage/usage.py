@@ -16,7 +16,7 @@ class Usage_map :
         
     ### 데이터 읽어들이기
     def initDataFrame(self) :
-        file_path = "./referenceapp/usage/전력 사용량 14차.csv"
+        file_path = "./mainapp/usage/전력 사용량 14차.csv"
         self.usage_data = pd.read_csv(file_path)
         self.usage_data.drop(columns=['Unnamed: 0'], inplace=True)
         
@@ -38,7 +38,7 @@ class Usage_map :
     # json
     def initJson(self) :
         # 시도구분된 지역 json 파일 가져오기
-        jsonfile = open('./referenceapp/usage/Sido.json','r',encoding='utf8').read()     
+        jsonfile = open('./mainapp/usage/Sido.json','r',encoding='utf8').read()     
         self.jsondata = json.loads(jsonfile)                             
         # Sido.json을 복사해서 일부 특성(Key와 Record) 추가
         self.jsondata_loc = {'type': 'FeatureCollection'}                

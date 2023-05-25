@@ -20,14 +20,10 @@ ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'cultureapp',
-    'industryapp',
     'mainapp',
-    'peopleapp',
-    'priceapp',
-    'referenceapp',
-    'residenceapp',
-    'taxapp',
+    'yearmonthapp',
+    'yearmapapp',
+    'yeargraphapp',
     'sass_processor',
     'django.contrib.admin',
     'django.contrib.auth',

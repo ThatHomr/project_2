@@ -14,7 +14,7 @@ class Data_View :
 
     ### 데이터 읽어들이기
     def initDataFrame(self) :
-        file_path = "./referenceapp/usage/전력 사용량 14차.csv"
+        file_path = "./mainapp/usage/전력 사용량 14차.csv"
         self.usage_data = pd.read_csv(file_path)
         self.usage_data.drop(columns=['Unnamed: 0'], inplace=True)
 
@@ -27,19 +27,6 @@ class Data_View :
         self.df_data = self.df_ver[['월', '사용량']]
         self.df_data_test = self.df_data.to_dict(orient='records')
         return self.df_data
-        
-    # ### 특정년 리스트 만들기
-    # def setYearList(self, year_data) :
-    #     self.year = year_data
-    #     if self.year is "ERROR":
-    #         self.year = 2021
-    #     self.year = int(self.year)
-
-    #     self.df_ver = self.usage_data.query('연도 == @year')
-    #     year_list = []
-    #     for item in self.df.ver :
-    #         year_list.append(item['사용량'])
-    #     return year_list
     
     ###  그래프 그리기
     def initVisualization(self, data) :
